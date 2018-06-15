@@ -34,7 +34,11 @@ public class AppUtils {
     }
 
     /**
-     * 获取应用程序名称
+     * <p>
+     * created at 2018/6/15 17:23
+     *
+     * @param context 上下文对象
+     * @return java.lang.String App名称
      */
     public static String getAppName(Context context) {
         String appName = null;
@@ -51,8 +55,11 @@ public class AppUtils {
 
     /**
      * 获取应用程序版本名称信息
+     * <p>
+     * created at 2018/6/15 17:23
      *
-     * @return 当前应用的版本名称
+     * @param context 上下文对象
+     * @return java.lang.String App当前版本名称
      */
     public static String getVersionName(Context context) {
         String versionName = null;
@@ -67,9 +74,12 @@ public class AppUtils {
     }
 
     /**
-     * 获取应用程序版本名称信息
+     * 获取App版本号
+     * <p>
+     * created at 2018/6/15 17:24
      *
-     * @return 当前应用的版本号
+     * @param context 上下文对象
+     * @return int App当前版本号
      */
     public static int getVersionCode(Context context) {
         int versionCode = -1;
@@ -85,9 +95,12 @@ public class AppUtils {
 
     /**
      * 安装apk,用于更新时下载Apk并安装
+     * <p>
+     * created at 2018/6/15 17:24
      *
-     * @param context 上下文对象
-     * @param path    apk文件路径
+     * @param context   上下文对象
+     * @param path      Apk文件路径
+     * @param authority 授权文件名称
      */
     public static void installApk(Context context, String path, String authority) {
         File file = new File(path);

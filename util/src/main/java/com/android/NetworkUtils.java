@@ -56,6 +56,7 @@ public class NetworkUtils {
     /**
      * 判断网络是否连接
      *
+     * @param context 上下文对象
      * @return 连接状态
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
@@ -76,6 +77,7 @@ public class NetworkUtils {
      * 判断是否是wifi
      * 需求权限<p>android.permission.ACCESS_NETWORK_STATE</p>
      *
+     * @param context 上下文对象
      * @return true wifi
      */
     public static boolean isWifi(Context context) {
@@ -86,6 +88,7 @@ public class NetworkUtils {
     /**
      * 判断网络类型
      *
+     * @param context 上下文对象
      * @return 网络类型
      */
     public static int getNetworkType(Context context) {
@@ -158,6 +161,7 @@ public class NetworkUtils {
      * 获取网络运营商名称
      * <p>中国移动、如中国联通、中国电信</p>
      *
+     * @param context 上下文对象
      * @return 运营商名称
      */
     public static String getNetworkOperatorName(Context context) {

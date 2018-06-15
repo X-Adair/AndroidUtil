@@ -20,6 +20,11 @@ public class StringUtils {
 
     /**
      * 判断字符串是否为空或者长度为0
+     * <p>
+     * created at 2018/6/15 17:29
+     *
+     * @param string 字符串对象
+     * @return boolean true为空，false不为空
      */
     public static boolean isEmpty(String string) {
         return string == null || string.length() == 0;
@@ -27,6 +32,11 @@ public class StringUtils {
 
     /**
      * 判断判断字符串是否为空或者长度为0，去除空格
+     * <p>
+     * created at 2018/6/15 17:29
+     *
+     * @param string 字符串对象
+     * @return boolean true为空，false不为空
      */
     public static boolean isBlank(String string) {
         return string == null || string.trim().length() == 0;
@@ -35,8 +45,9 @@ public class StringUtils {
     /**
      * 格式化带参数String
      *
-     * @param resId String resId
-     * @param args  参数
+     * @param context 上下文对象
+     * @param resId   String resId
+     * @param args    参数
      * @return 目标String
      */
     public static String Format(Context context, int resId, Object... args) {

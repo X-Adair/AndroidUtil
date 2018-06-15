@@ -18,11 +18,27 @@ public class SPUtils {
 
     private static final String NAME = "share_data";
 
+    /**
+     * 打开SharedPreferences Editor
+     * <p>
+     * created at 2018/6/15 17:27
+     *
+     * @param context 上下文对象
+     * @return android.content.SharedPreferences.Editor
+     */
     public static SharedPreferences.Editor OpenEditor(Context context) {
         SharedPreferences sp = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
         return sp.edit();
     }
 
+    /**
+     * 打开SharedPreferences
+     * <p>
+     * created at 2018/6/15 17:27
+     *
+     * @param context 上下文对象
+     * @return android.content.SharedPreferences
+     */
     public static SharedPreferences Open(Context context) {
         return context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
     }
@@ -30,8 +46,9 @@ public class SPUtils {
     /**
      * sharePreference 不支持存储double,要存储double，可以将double转为Json(可以不失去精度)存储
      *
-     * @param key   key
-     * @param value 存储目标数据
+     * @param context 上下文对象
+     * @param key     key
+     * @param value   存储目标数据
      */
     public static void putDouble(Context context, String key, double value) {
         SharedPreferences sp = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);

@@ -26,7 +26,8 @@ public class DensityUtil {
     /**
      * dp转px
      *
-     * @param dpVal 需要转换为px的dp值
+     * @param context 上下文对象
+     * @param dpVal   需要转换为px的dp值
      * @return 转换后的值
      */
     public static int dp2px(Context context, float dpVal) {
@@ -36,7 +37,8 @@ public class DensityUtil {
     /**
      * sp转px
      *
-     * @param spVal 需要转换为px的sp值
+     * @param context 上下文对象
+     * @param spVal   需要转换为px的sp值
      * @return 转换后的值
      */
     public static int sp2px(Context context, float spVal) {
@@ -46,7 +48,8 @@ public class DensityUtil {
     /**
      * px转dp
      *
-     * @param pxVal 需要转换为dp的px值
+     * @param context 上下文对象
+     * @param pxVal   需要转换为dp的px值
      * @return 转换为dp的值
      */
     public static float px2dp(Context context, float pxVal) {
@@ -57,7 +60,8 @@ public class DensityUtil {
     /**
      * px转sp
      *
-     * @param pxVal 需要转换为sp的px值
+     * @param context 上下文对象
+     * @param pxVal   需要转换为sp的px值
      * @return 转换为sp的值
      */
     public static float px2sp(Context context, float pxVal) {
@@ -68,6 +72,7 @@ public class DensityUtil {
     /**
      * 获得屏幕宽度
      *
+     * @param context 上下文对象
      * @return 屏幕宽度
      */
     public static int getScreenWidth(Context context) {
@@ -84,6 +89,7 @@ public class DensityUtil {
     /**
      * 获得屏幕高度，不包括底部虚拟按键
      *
+     * @param context 上下文对象
      * @return 屏幕高度
      */
     public static int getScreenHeight(Context context) {
@@ -100,6 +106,7 @@ public class DensityUtil {
     /**
      * 获取屏幕高度，包含有底部虚拟按键的高度
      *
+     * @param context 上下文对象
      * @return 屏幕高度
      */
     public static int getScreenHeightWithVirtualKey(Context context) {
@@ -126,6 +133,7 @@ public class DensityUtil {
     /**
      * 获得状态栏的高度
      *
+     * @param context 上下文对象
      * @return 手机状态栏高度
      */
     public static int getStatusHeight(Context context) {
@@ -141,6 +149,7 @@ public class DensityUtil {
     /**
      * 获取Navigation Bar高度
      *
+     * @param context 上下文对象
      * @return 手机底部NavigationBar高度
      */
     public static int getNavigationBarHeight(Context context) {
