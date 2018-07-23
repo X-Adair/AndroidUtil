@@ -2,6 +2,7 @@ package com.android;
 
 import android.content.Context;
 import android.os.Environment;
+import android.support.annotation.RequiresPermission;
 
 import java.io.File;
 
@@ -67,7 +68,8 @@ public class FileDirectoryUtils {
      * @return true为可用，false为不可用
      */
     public static boolean getExternalStorageState() {
-        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+        return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) ||
+                !Environment.isExternalStorageRemovable();
     }
 
     /**
@@ -93,6 +95,7 @@ public class FileDirectoryUtils {
      *                {@link Environment#DIRECTORY_MOVIES}.
      * @return 目标文件
      */
+    @RequiresPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
     public static File getExternalFilesDir(Context context, String type) {
         if (getExternalStorageState()) {
             return context.getExternalFilesDir(type);
@@ -113,6 +116,7 @@ public class FileDirectoryUtils {
      * @param context 上下文对象
      * @return 目标文件
      */
+    @RequiresPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
     public static File getExternalCacheDir(Context context) {
         if (getExternalStorageState()) {
             return context.getExternalCacheDir();
@@ -131,6 +135,7 @@ public class FileDirectoryUtils {
      *
      * @return 目标文件
      */
+    @RequiresPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
     public static File getExternalStorageDirectory() {
         if (getExternalStorageState()) {
             return Environment.getExternalStorageDirectory();
@@ -148,23 +153,41 @@ public class FileDirectoryUtils {
      * {@link android.Manifest.permission#READ_EXTERNAL_STORAGE}
      *
      * @param type The type of storage directory to return. Should be one of
-     *             {@link Environment#DIRECTORY_MUSIC},
-     *             {@link Environment#DIRECTORY_PODCASTS},
-     *             {@link Environment#DIRECTORY_RINGTONES},
-     *             {@link Environment#DIRECTORY_ALARMS},
-     *             {@link Environment#DIRECTORY_NOTIFICATIONS},
-     *             {@link Environment#DIRECTORY_PICTURES},
-     *             {@link Environment#DIRECTORY_MOVIES},
-     *             {@link Environment#DIRECTORY_DOWNLOADS},
-     *             {@link Environment#DIRECTORY_DCIM},or
-     *             {@link Environment#DIRECTORY_DOCUMENTS}.
+     *             {@link Environment#DIRECTORY_MUSIC},音乐存放的标准目录。
+     *             {@link Environment#DIRECTORY_PODCASTS},系统广播存放的标准目录。
+     *             {@link Environment#DIRECTORY_RINGTONES},系统铃声存放的标准目录
+     *             {@link Environment#DIRECTORY_ALARMS}, 系统提醒铃声存放的标准目录
+     *             {@link Environment#DIRECTORY_NOTIFICATIONS},系统通知铃声存放的标准目录
+     *             {@link Environment#DIRECTORY_PICTURES},图片存放的标准目录
+     *             {@link Environment#DIRECTORY_MOVIES},电影存放的标准目录
+     *             {@link Environment#DIRECTORY_DOWNLOADS},下载的标准目录
+     *             {@link Environment#DIRECTORY_DCIM},or 相机拍摄照片和视频的标准目录
+     *             {@link Environment#DIRECTORY_DOCUMENTS}. 文档标准目录
      *             May not be null.
      * @return 目标文件 可能为空
      */
+    @RequiresPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
     public static File getExternalStoragePublicDirectory(String type) {
         if (getExternalStorageState()) {
             return Environment.getExternalStoragePublicDirectory(type);
         }
         return null;
+    }
+
+
+    /**
+     * 获取手机缓存文件夹路径,如果SD可用，则获取SD路径，否则获取手机路径
+     *
+     * @param context    上下文对象
+     * @param uniqueName 文件夹名称
+     */
+    public static File getDiskCacheDir(Context context, String uniqueName) {
+        String cachePath;
+        if (getExternalStorageState()) {
+            cachePath = context.getExternalCacheDir().getPath();
+        } else {
+            cachePath = context.getCacheDir().getPath();
+        }
+        return new File(cachePath + File.separator + uniqueName);
     }
 }
