@@ -1,4 +1,4 @@
-package com.android;
+package com.android.util;
 
 import android.app.Activity;
 import android.graphics.Bitmap;

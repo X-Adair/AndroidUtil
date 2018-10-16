@@ -1,4 +1,4 @@
-package com.android;
+package com.android.util;
 
 import com.android.util.constant.MemoryConstant;
 
