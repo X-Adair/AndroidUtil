@@ -33,7 +33,7 @@ public class ImageUtils {
      * @param src 源图片
      * @return {@code true}: 是<br>{@code false}: 否
      */
-    private static boolean isEmptyBitmap(Bitmap src) {
+    public static boolean isEmptyBitmap(Bitmap src) {
         return src == null || src.getWidth() == 0 || src.getHeight() == 0;
     }
 
@@ -67,7 +67,7 @@ public class ImageUtils {
      * @param maxHeight 最大高度
      * @return 采样大小
      */
-    private static int calculateInSampleSize(BitmapFactory.Options options, int maxWidth, int maxHeight) {
+    public static int calculateInSampleSize(BitmapFactory.Options options, int maxWidth, int maxHeight) {
         if (maxWidth == 0 || maxHeight == 0) return 1;
         int height = options.outHeight;
         int width = options.outWidth;
@@ -113,8 +113,8 @@ public class ImageUtils {
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache();
         Bitmap bmp = view.getDrawingCache();
-        int width = DensityUtil.getScreenWidth(activity.getApplication());
-        int height = DensityUtil.getScreenHeight(activity.getApplication());
+        int width = DensityUtils.getScreenWidth(activity.getApplication());
+        int height = DensityUtils.getScreenHeight(activity.getApplication());
         Bitmap bp = Bitmap.createBitmap(bmp, 0, 0, width, height);
         view.destroyDrawingCache();
         return bp;
@@ -134,8 +134,8 @@ public class ImageUtils {
         Rect frame = new Rect();
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
         int statusBarHeight = frame.top;
-        int width = DensityUtil.getScreenWidth(activity);
-        int height = DensityUtil.getScreenHeight(activity);
+        int width = DensityUtils.getScreenWidth(activity);
+        int height = DensityUtils.getScreenHeight(activity);
         Bitmap bp = Bitmap.createBitmap(bmp, 0, statusBarHeight, width, height - statusBarHeight);
         view.destroyDrawingCache();
         return bp;

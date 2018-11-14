@@ -81,12 +81,12 @@ public class AppUtils {
      * @param context 上下文对象
      * @return int App当前版本号
      */
-    public static int getVersionCode(Context context) {
-        int versionCode = -1;
+    public static long getVersionCode(Context context) {
+        long versionCode = -1;
         try {
             PackageManager packageManager = context.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-            versionCode = packageInfo.versionCode;
+            versionCode = packageInfo.getLongVersionCode();
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }

@@ -184,9 +184,14 @@ public class FileDirectoryUtils {
     public static File getDiskCacheDir(Context context, String uniqueName) {
         String cachePath;
         if (getExternalStorageState()) {
-            cachePath = context.getExternalCacheDir().getPath();
+            File file = context.getExternalCacheDir();
+            if (file != null) {
+                cachePath = file.getAbsolutePath();
+            } else {
+                cachePath = context.getCacheDir().getAbsolutePath();
+            }
         } else {
-            cachePath = context.getCacheDir().getPath();
+            cachePath = context.getCacheDir().getAbsolutePath();
         }
         return new File(cachePath + File.separator + uniqueName);
     }

@@ -2,6 +2,7 @@ package com.android.util;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Build;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Display;
@@ -17,9 +18,9 @@ import java.lang.reflect.Method;
  * @author XuShuai
  * @version v1.0
  */
-public class DensityUtil {
+public class DensityUtils {
 
-    private DensityUtil() {
+    private DensityUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
@@ -109,26 +110,62 @@ public class DensityUtil {
      * @param context 上下文对象
      * @return 屏幕高度
      */
-    public static int getScreenHeightWithVirtualKey(Context context) {
-        int dpi = 0;
+    public static int getRealHeight(Context context) {
+        int height = 0;
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        Display display;
+        DisplayMetrics outMetrics = new DisplayMetrics();
         if (wm != null) {
-            display = wm.getDefaultDisplay();
-
-            DisplayMetrics dm = new DisplayMetrics();
-            @SuppressWarnings("rawtypes") Class c;
-            try {
-                c = Class.forName("android.view.Display");
-                @SuppressWarnings("unchecked") Method method = c.getMethod("getRealMetrics", DisplayMetrics.class);
-                method.invoke(display, dm);
-                dpi = dm.heightPixels;
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                wm.getDefaultDisplay().getRealMetrics(outMetrics);
+                height = outMetrics.heightPixels;
+            } else {
+                Display display = wm.getDefaultDisplay();
+                @SuppressWarnings("rawtypes")
+                Class c;
+                try {
+                    c = Class.forName("android.view.Display");
+                    @SuppressWarnings("unchecked") Method method = c.getMethod("getRealMetrics", DisplayMetrics.class);
+                    method.invoke(display, outMetrics);
+                    height = outMetrics.heightPixels;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
-        return dpi;
+        return height;
     }
+
+    /**
+     * 获取屏幕高度，横屏包含有底部虚拟按键的高度
+     *
+     * @param context 上下文对象
+     * @return 屏幕高度
+     */
+    public static int getRealWidth(Context context) {
+        int width = 0;
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        if (wm != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                wm.getDefaultDisplay().getRealMetrics(outMetrics);
+                width = outMetrics.widthPixels;
+            } else {
+                Display display = wm.getDefaultDisplay();
+                @SuppressWarnings("rawtypes")
+                Class c;
+                try {
+                    c = Class.forName("android.view.Display");
+                    @SuppressWarnings("unchecked") Method method = c.getMethod("getRealMetrics", DisplayMetrics.class);
+                    method.invoke(display, outMetrics);
+                    width = outMetrics.widthPixels;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return width;
+    }
+
 
     /**
      * 获得状态栏的高度
