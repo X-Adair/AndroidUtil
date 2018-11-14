@@ -1,8 +1,8 @@
-package com.android.util.constant;
+package com.adair.util.constant;
 
 import android.support.annotation.IntDef;
 
-import com.android.util.MathUtils;
+import com.adair.util.MathUtils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

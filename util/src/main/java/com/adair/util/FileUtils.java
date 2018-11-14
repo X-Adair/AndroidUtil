@@ -1,6 +1,6 @@
-package com.android.util;
+package com.adair.util;
 
-import com.android.util.constant.MemoryConstant;
+import com.adair.util.constant.MemoryConstant;
 
 import java.text.DecimalFormat;
 

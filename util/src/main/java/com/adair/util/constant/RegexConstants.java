@@ -1,4 +1,4 @@
-package com.android.util.constant;
+package com.adair.util.constant;
 
 /**
  * package：    com.adair.xsandroid.utils.constant

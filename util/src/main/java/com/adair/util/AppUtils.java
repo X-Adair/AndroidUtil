@@ -1,4 +1,4 @@
-package com.android.util;
+package com.adair.util;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -86,7 +86,11 @@ public class AppUtils {
         try {
             PackageManager packageManager = context.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-            versionCode = packageInfo.getLongVersionCode();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                versionCode = packageInfo.getLongVersionCode();
+            } else {
+                versionCode = packageInfo.versionCode;
+            }
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }

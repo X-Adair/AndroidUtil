@@ -1,4 +1,4 @@
-package com.android.util;
+package com.adair.util;
 
 import android.content.Context;
 import android.widget.Toast;
