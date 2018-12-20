@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.v4.content.FileProvider;
+import android.support.v4.content.pm.PackageInfoCompat;
 
 import java.io.File;
 import java.util.List;
@@ -86,11 +87,7 @@ public class AppUtils {
         try {
             PackageManager packageManager = context.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                versionCode = packageInfo.getLongVersionCode();
-            } else {
-                versionCode = packageInfo.versionCode;
-            }
+            versionCode = PackageInfoCompat.getLongVersionCode(packageInfo);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
